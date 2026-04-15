@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>RED PRODUCT – Connexion</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    * {
+      font-family: 'Poppins', sans-serif;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: rgb(86, 108, 157);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+    }
+
+    /* Logo bookmark */
+    .logo-icon {
+      display: inline-block;
+      width: 22px;
+      height: 26px;
+      background: white;
+      clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 50% 78%, 0% 100%);
+      margin-right: 8px;
+      vertical-align: middle;
+    }
+
+    /* Carte blanche */
+    .card {
+      background: white;
+      border-radius: 8px;
+      padding: 28px 24px;
+      width: 100%;
+      max-width: 340px;
+    }
+
+    /* Champs input */
+    .input-field {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 0.88rem;
+      color: #333;
+      outline: none;
+      background: #f9f9f9;
+      transition: border-color 0.2s;
+    }
+    .input-field:focus {
+      border-color: rgb(86, 108, 157);
+    }
+    .input-field::placeholder {
+      color: #aaa;
+      font-size: 0.85rem;
+    }
+
+    /* Bouton Se connecter */
+    .btn-login {
+      width: 100%;
+      padding: 10px;
+      background-color: rgb(86, 108, 157);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: opacity 0.2s;
+      letter-spacing: 0.03em;
+    }
+    .btn-login:hover {
+      opacity: 0.9;
+    }
+
+    /* Message erreur */
+    #error-msg {
+      color: red;
+      font-size: 0.78rem;
+      text-align: center;
+      margin-top: 6px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Logo -->
+  <div style="margin-bottom: 20px; text-align: center;">
+    <span style="color: white; font-size: 1.3rem; font-weight: 600; letter-spacing: 0.05em;">
+      <span class="logo-icon"></span>
+      RED PRODUCT
+    </span>
+  </div>
+
+  <!-- Carte formulaire -->
+  <div class="card">
+
+    <!-- Titre -->
+    <p style="text-align: center; color: rgb(86,108,157); font-size: 0.82rem; margin-bottom: 20px;">
+      Connectez-vous en tant que Admin
+    </p>
+
+    <!-- Email -->
+    <div style="margin-bottom: 14px;">
+      <input
+        type="email"
+        id="email"
+        placeholder="E-mail"
+        class="input-field"
+      />
+    </div>
+
+    <!-- Mot de passe -->
+    <div style="margin-bottom: 14px;">
+      <input
+        type="password"
+        id="password"
+        placeholder="Mot de passe"
+        class="input-field"
+      />
+    </div>
+
+    <!-- Gardez-moi connecté -->
+    <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 18px;">
+      <input type="checkbox" id="remember" style="accent-color: rgb(86,108,157); width:14px; height:14px; cursor:pointer;" />
+      <label for="remember" style="font-size: 0.82rem; color: black; cursor: pointer;">
+        Gardez-moi connecté
+      </label>
+    </div>
+
+    <!-- Bouton -->
+    <button class="btn-login" onclick="handleLogin()">
+      Se connecter
+    </button>
+
+    <!-- Message erreur -->
+    <p id="error-msg"></p>
+
+  </div>
+
+  <!-- Liens sous la carte -->
+  <div style="margin-top: 16px; text-align: center;">
+    <a href="forgot-password.html" style="color: #FFD700; font-size: 0.85rem; text-decoration: none; display: block; margin-bottom: 8px;">
+      Mot de passe oublié?
+    </a>
+    <p style="color: white; font-size: 0.85rem; margin: 0;">
+      Vous n'avez pas de compte?
+      <a href="register.html" style="color: #FFD700; font-weight: 600; text-decoration: none;">
+        S'inscrire
+      </a>
+    </p>
+  </div>
+
+  <script>
+    function handleLogin() {
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+      const errorMsg = document.getElementById('error-msg');
+
+      errorMsg.style.display = 'none';
+      errorMsg.textContent = '';
+
+      if (!email || !password) {
+        errorMsg.textContent = 'Veuillez remplir tous les champs.';
+        errorMsg.style.display = 'block';
+        return;
+      }
+
+      if (!email.includes('@')) {
+        errorMsg.textContent = 'Adresse e-mail invalide.';
+        errorMsg.style.display = 'block';
+        return;
+      }
+
+      // Redirection vers le dashboard
+      window.location.href = 'dashboard.html';
+    }
+
+    // Touche Entrée pour soumettre
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') handleLogin();
+    });
+  </script>
+
+</body>
+</html>
