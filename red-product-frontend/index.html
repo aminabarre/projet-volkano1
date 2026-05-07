@@ -130,6 +130,14 @@
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Enter') handleLogin()
     })
+  // Afficher message si compte activé
+const urlParams = new URLSearchParams(window.location.search)
+if (urlParams.get('activated') === 'true') {
+  document.getElementById('error-msg').textContent = '✅ Compte activé ! Vous pouvez maintenant vous connecter.'
+  document.getElementById('error-msg').classList.remove('hidden')
+  document.getElementById('error-msg').classList.remove('text-red-500')
+  document.getElementById('error-msg').classList.add('text-green-500')
+}
   </script>
 
 </body>
